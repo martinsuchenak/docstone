@@ -614,6 +614,17 @@ main {
 
 #search .pagefind-ui__search-clear {
   color: var(--color-text-primary) !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: var(--spacing-2) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#search .pagefind-ui__search-clear:hover {
+  color: var(--color-accent-primary) !important;
 }
 
 #search .pagefind-ui__search-input::placeholder {
