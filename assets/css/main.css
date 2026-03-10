@@ -418,6 +418,12 @@ main {
   display: none;
   list-style: none;
   gap: var(--spacing-1);
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  margin-bottom: 0;
 }
 
 .nav-menu.active {
