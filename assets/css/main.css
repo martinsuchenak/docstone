@@ -345,6 +345,7 @@ main {
   justify-content: space-between;
   padding: var(--spacing-4) 0;
   gap: var(--spacing-6);
+  min-height: 4rem;
 }
 
 .nav-logo {
@@ -459,13 +460,35 @@ main {
   font-size: var(--font-size-sm);
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.nav-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.nav-icon-link:hover {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
+}
+
 /* ============================================
    Theme Switcher
    ============================================ */
-.theme-switcher-wrapper {
-  margin-left: var(--spacing-2);
-}
-
 .theme-switcher {
   position: relative;
 }
@@ -567,6 +590,7 @@ html:not([data-theme]) .theme-icon-system {
 .theme-option.active {
   color: var(--color-accent-primary);
   background-color: var(--color-bg-tertiary);
+  font-weight: var(--font-weight-semibold);
 }
 
 .theme-option svg {
@@ -582,10 +606,15 @@ html:not([data-theme]) .theme-icon-system {
     display: flex;
     flex-direction: row;
     align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .nav-menu.active {
-    position: static;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     border: none;
     padding: 0;
     box-shadow: none;
@@ -600,10 +629,17 @@ html:not([data-theme]) .theme-icon-system {
   border-top: 1px solid var(--color-border);
   padding: var(--spacing-6) 0;
   margin-top: var(--spacing-16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-bottom {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
 }
 
 .footer-copyright {
