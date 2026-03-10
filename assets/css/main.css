@@ -616,7 +616,8 @@ main {
   color: var(--color-text-primary) !important;
   background-color: transparent !important;
   border: none !important;
-  padding: var(--spacing-2) !important;
+  padding: var(--spacing-2) var(--spacing-4) !important;
+  margin-right: var(--spacing-2) !important;
   cursor: pointer !important;
   display: flex !important;
   align-items: center !important;
