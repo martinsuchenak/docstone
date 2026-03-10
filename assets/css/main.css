@@ -1176,6 +1176,11 @@ pre code {
   min-width: 0;
 }
 
+.docs-content-wrapper {
+  min-width: 0;
+  max-width: 900px;
+}
+
 .docs-content h1 {
   margin-bottom: var(--spacing-6);
 }
