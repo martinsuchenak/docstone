@@ -552,7 +552,7 @@ html:not([data-theme]) .theme-icon-system {
   right: 0;
   min-width: 140px;
   padding: var(--spacing-1);
-  background-color: var(--color-bg-surface);
+  background-color: var(--color-bg-primary);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
