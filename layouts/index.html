@@ -1,5 +1,4 @@
 {{ define "main" }}
-{{ $hero := .Site.Params.hero | default true }}
 <section class="hero">
   <div class="container">
     <div class="hero-logo-wrapper">
@@ -15,7 +14,9 @@
     {{ if .Site.Params.heroActions }}
     <div class="hero-actions">
       {{ range .Site.Params.heroActions }}
-      <a href="{{ .url }}" class="btn {{ .class }} {{ if .external }}btn-secondary{{ else "btn-primary" }} btn-lg"{{ end }}">
+      {{ $btnClass := "btn-primary" }}
+      {{ if .external }}{{ $btnClass = "btn-secondary" }}{{ end }}
+      <a href="{{ .url }}" class="btn {{ $btnClass }} btn-lg"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}>
         {{ .name }}
         {{ if .external }}<span aria-hidden="true">↗</span>{{ end }}
       </a>
@@ -40,4 +41,5 @@
     </div>
   </div>
 </section>
+{{ end }}
 {{ end }}
