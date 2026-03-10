@@ -598,103 +598,26 @@ html:not([data-theme]) .theme-icon-system {
 .site-footer {
   background-color: var(--color-bg-secondary);
   border-top: 1px solid var(--color-border);
-  padding: var(--spacing-12) 0 var(--spacing-6);
+  padding: var(--spacing-6) 0;
   margin-top: var(--spacing-16);
 }
 
-.footer-content {
-  display: grid;
-  gap: var(--spacing-8);
-  margin-bottom: var(--spacing-8);
-}
-
-@media (min-width: 768px) {
-  .footer-content {
-    grid-template-columns: 1fr auto;
-    justify-items: start;
-  }
-}
-
-.footer-links {
-  display: flex;
-  gap: var(--spacing-10);
-}
-
-.footer-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-2);
-  text-decoration: none;
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-xl);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-2);
-}
-
-.footer-logo:hover {
-  color: var(--color-accent-primary);
-}
-
-.footer-logo .logo {
-  width: 32px;
-  height: 32px;
-  color: var(--color-text-primary);
-  transition: color var(--transition-fast);
-}
-
-.footer-logo:hover .logo {
-  color: var(--color-accent-primary);
-}
-
-.footer-tagline {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-sm);
-  max-width: 300px;
-}
-
-.footer-heading {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-semibold);
-  margin-bottom: var(--spacing-4);
-}
-
-.footer-section {
-  text-align: left;
-}
-
-.footer-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: left;
-}
-
-.footer-list li {
-  margin-bottom: var(--spacing-2);
-}
-
-.footer-list a {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-  text-decoration: none;
-}
-
-.footer-list a:hover {
-  text-decoration: underline;
-}
-
-.footer-list a:hover {
-  color: var(--color-accent-primary);
-}
-
 .footer-bottom {
-  padding-top: var(--spacing-6);
-  border-top: 1px solid var(--color-border);
+  text-align: center;
 }
 
 .footer-copyright {
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.footer-copyright a {
+  color: var(--color-text-muted);
+}
+
+.footer-copyright a:hover {
+  color: var(--color-accent-primary);
 }
 
 /* ============================================
