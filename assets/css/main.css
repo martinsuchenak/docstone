@@ -494,6 +494,79 @@ main {
 }
 
 /* ============================================
+   Search
+   ============================================ */
+.nav-search {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav-search {
+    display: block;
+    flex: 1;
+    max-width: 400px;
+    margin: 0 var(--spacing-4);
+  }
+}
+
+/* Pagefind UI customization */
+.pagefind-ui__search-input {
+  background-color: var(--color-bg-secondary) !important;
+  border: 2px solid var(--color-border) !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--color-text-primary) !important;
+  font-size: var(--font-size-sm) !important;
+  padding: var(--spacing-2) var(--spacing-3) !important;
+  height: 40px !important;
+}
+
+.pagefind-ui__search-input::placeholder {
+  color: var(--color-text-muted) !important;
+}
+
+.pagefind-ui__search-input:focus {
+  outline: var(--focus-outline) !important;
+  outline-offset: var(--focus-outline-offset) !important;
+  border-color: var(--color-accent-primary) !important;
+}
+
+.pagefind-ui__results-area {
+  background-color: var(--color-bg-primary) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-lg) !important;
+  margin-top: var(--spacing-2) !important;
+}
+
+.pagefind-ui__result {
+  border-bottom: 1px solid var(--color-border) !important;
+  padding: var(--spacing-3) !important;
+}
+
+.pagefind-ui__result:hover {
+  background-color: var(--color-bg-secondary) !important;
+}
+
+.pagefind-ui__result-title {
+  color: var(--color-text-primary) !important;
+  font-weight: var(--font-weight-semibold) !important;
+}
+
+.pagefind-ui__result-excerpt {
+  color: var(--color-text-secondary) !important;
+  font-size: var(--font-size-sm) !important;
+}
+
+.pagefind-ui__result-link {
+  text-decoration: none !important;
+}
+
+.pagefind-ui__message {
+  color: var(--color-text-muted) !important;
+  padding: var(--spacing-3) !important;
+}
+
+/* ============================================
    Theme Switcher
    ============================================ */
 .theme-switcher {

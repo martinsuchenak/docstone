@@ -268,3 +268,33 @@ function initThemeSwitcher() {
     });
   }
 }
+
+
+// ============================================
+// Pagefind Search
+// ============================================
+function initPagefind() {
+  const searchContainer = document.getElementById('search');
+  if (!searchContainer) return;
+
+  // Wait for Pagefind to load
+  if (typeof PagefindUI === 'undefined') {
+    setTimeout(initPagefind, 100);
+    return;
+  }
+
+  new PagefindUI({
+    element: '#search',
+    showSubResults: true,
+    showImages: false,
+    excerptLength: 15,
+    resetStyles: false,
+  });
+}
+
+// Initialize search when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPagefind);
+} else {
+  initPagefind();
+}

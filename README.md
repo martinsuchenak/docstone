@@ -87,6 +87,24 @@ layouts/partials/hero-logo.html  # homepage hero logo (96×96)
 
 Create `assets/css/custom.css` in your site — it's automatically loaded after the theme styles.
 
+## Search
+
+Docstone includes Pagefind search integration. To enable:
+
+1. Add Pagefind to your project:
+```bash
+npm install -D pagefind
+```
+
+2. Update your build script in `package.json`:
+```json
+"scripts": {
+  "build": "hugo --minify && npx pagefind --site public"
+}
+```
+
+3. The search box appears automatically in the header on desktop. Pagefind indexes your site after Hugo builds it.
+
 ## Shortcodes
 
 ### Notice
