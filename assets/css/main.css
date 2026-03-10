@@ -1021,6 +1021,91 @@ pre code {
 }
 
 /* ============================================
+   Sidebar Navigation
+   ============================================ */
+.docs-sidebar-nav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .docs-sidebar-nav {
+    display: block;
+    position: sticky;
+    top: calc(80px + var(--spacing-4));
+    height: fit-content;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    padding-right: var(--spacing-4);
+  }
+}
+
+.sidebar-section {
+  margin-bottom: var(--spacing-8);
+}
+
+.sidebar-section-title {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-3);
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-list li {
+  margin-bottom: var(--spacing-1);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-2) var(--spacing-3);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-md);
+  border-left: 3px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.sidebar-link:hover {
+  color: var(--color-accent-primary);
+  background-color: var(--color-bg-secondary);
+}
+
+.sidebar-link-active {
+  color: var(--color-accent-primary);
+  background-color: var(--color-bg-secondary);
+  border-left-color: var(--color-accent-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.sidebar-external {
+  font-size: var(--font-size-xs);
+  opacity: 0.6;
+}
+
+/* Layout with sidebar */
+.docs-layout-with-sidebar {
+  display: grid;
+  gap: var(--spacing-8);
+  padding: var(--spacing-8) 0;
+}
+
+@media (min-width: 1024px) {
+  .docs-layout-with-sidebar {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+/* ============================================
    Documentation Layout
    ============================================ */
 .docs-layout {

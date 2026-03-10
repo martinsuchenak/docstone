@@ -1,0 +1,33 @@
+{{/*
+  Sidebar Navigation Partial
+  Renders a hierarchical navigation sidebar from site menus.
+  Usage: {{ partial "sidebar.html" . }}
+  Requires [menus.sidebar] configuration in hugo.toml
+*/}}
+<aside class="docs-sidebar-nav" aria-label="Documentation navigation">
+  <nav>
+    {{ range .Site.Menus.sidebar }}
+    <div class="sidebar-section">
+      {{ if .Name }}
+      <h2 class="sidebar-section-title">{{ .Name }}</h2>
+      {{ end }}
+      {{ if .HasChildren }}
+      <ul class="sidebar-list">
+        {{ range .Children }}
+        <li>
+          <a
+            href="{{ .URL }}"
+            class="sidebar-link{{ if $.IsMenuCurrent "sidebar" . }} sidebar-link-active{{ end }}"
+            {{ if .Params.external }}target="_blank" rel="noopener noreferrer"{{ end }}
+          >
+            {{ .Name }}
+            {{ if .Params.external }}<span aria-hidden="true" class="sidebar-external">↗</span>{{ end }}
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+    </div>
+    {{ end }}
+  </nav>
+</aside>
