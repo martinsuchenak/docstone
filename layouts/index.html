@@ -1,0 +1,43 @@
+{{ define "main" }}
+{{ $hero := .Site.Params.hero | default true }}
+<section class="hero">
+  <div class="container">
+    <div class="hero-logo-wrapper">
+      {{ partial "hero-logo.html" . }}
+    </div>
+    <h1 class="hero-title">{{ .Site.Title }}</h1>
+    <p class="hero-subtitle">{{ .Site.Params.description }}</p>
+    {{ with .Site.Params.warning }}
+    <div class="warning-banner" role="alert">
+      <strong>⚠️ Warning:</strong> {{ . }}
+    </div>
+    {{ end }}
+    {{ if .Site.Params.heroActions }}
+    <div class="hero-actions">
+      {{ range .Site.Params.heroActions }}
+      <a href="{{ .url }}" class="btn {{ .class }} {{ if .external }}btn-secondary{{ else "btn-primary" }} btn-lg"{{ end }}">
+        {{ .name }}
+        {{ if .external }}<span aria-hidden="true">↗</span>{{ end }}
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+{{ if .Site.Params.features }}
+<section class="features">
+  <div class="container">
+    <h2 class="features-title">Features</h2>
+    <div class="features-grid">
+      {{ range .Site.Params.features }}
+      <a href="{{ .url }}" class="feature-card">
+        <div class="feature-icon" aria-hidden="true">{{ .icon }}</div>
+        <h3 class="feature-title">{{ .title }}</h3>
+        <p class="feature-description">{{ .description }}</p>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

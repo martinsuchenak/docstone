@@ -1,0 +1,23 @@
+name: Docstone
+license: MIT
+licenselink: https://github.com/martinsuchenak/docstone/blob/main/LICENSE
+description: A clean, accessible Hugo theme for documentation sites with dark/light mode support
+homepage: https://github.com/martinsuchenak/docstone
+tags:
+  - documentation
+  - dark-mode
+  - light-mode
+  - responsive
+  - accessible
+  - wcag
+features:
+  - Dark/Light/System theme modes
+  - WCAG 2.2 Level AAA compliant
+  - Responsive design
+  - Table of contents
+  - Code copy buttons
+  - Accessible navigation
+min_version: 0.120.0
+author:
+  name: Martin Suchenak
+  homepage: https://github.com/martinsuchenak
