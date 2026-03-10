@@ -271,25 +271,82 @@ function initThemeSwitcher() {
 
 
 // ============================================
-// Pagefind Search
+// Pagefind Search Modal
 // ============================================
 function initPagefind() {
+  const searchToggle = document.querySelector('.search-toggle');
+  const searchModal = document.getElementById('search-modal');
+  const searchModalClose = document.querySelector('.search-modal-close');
+  const searchModalOverlay = document.querySelector('.search-modal-overlay');
   const searchContainer = document.getElementById('search');
-  if (!searchContainer) return;
 
-  // Wait for Pagefind to load
-  if (typeof PagefindUI === 'undefined') {
-    setTimeout(initPagefind, 100);
-    return;
+  if (!searchToggle || !searchModal || !searchContainer) return;
+
+  let pagefindUI = null;
+
+  // Initialize Pagefind UI
+  function loadPagefind() {
+    if (typeof PagefindUI === 'undefined') {
+      setTimeout(loadPagefind, 100);
+      return;
+    }
+
+    if (!pagefindUI) {
+      pagefindUI = new PagefindUI({
+        element: '#search',
+        showSubResults: true,
+        showImages: false,
+        excerptLength: 30,
+        resetStyles: false,
+      });
+    }
   }
 
-  new PagefindUI({
-    element: '#search',
-    showSubResults: true,
-    showImages: false,
-    excerptLength: 15,
-    resetStyles: false,
+  // Open modal
+  function openSearch() {
+    searchModal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    
+    // Focus search input after a brief delay
+    setTimeout(() => {
+      const input = searchContainer.querySelector('input');
+      if (input) input.focus();
+    }, 100);
+  }
+
+  // Close modal
+  function closeSearch() {
+    searchModal.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+    searchToggle.focus();
+  }
+
+  // Event listeners
+  searchToggle.addEventListener('click', openSearch);
+  searchModalClose.addEventListener('click', closeSearch);
+  searchModalOverlay.addEventListener('click', closeSearch);
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !searchModal.hasAttribute('hidden')) {
+      closeSearch();
+    }
   });
+
+  // Keyboard shortcut: Cmd/Ctrl + K
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      if (searchModal.hasAttribute('hidden')) {
+        openSearch();
+      } else {
+        closeSearch();
+      }
+    }
+  });
+
+  // Load Pagefind
+  loadPagefind();
 }
 
 // Initialize search when DOM is ready
