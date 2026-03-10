@@ -9,18 +9,76 @@
   {{ .Content }}
 
   {{ if .Pages }}
-  <div class="features-grid docs-list-grid">
-    {{ range .Pages }}
-    <a href="{{ .RelPermalink }}" class="feature-card" style="text-decoration: none;">
-      <h3 class="feature-title">{{ .Title }}</h3>
-      {{ if .Description }}
-      <p class="feature-description">{{ .Description }}</p>
-      {{ else if .Summary }}
-      <p class="feature-description">{{ .Summary | plainify | truncate 120 }}</p>
+  {{/* Check if any pages use the 'category' front matter param */}}
+  {{ $categorized := where .Pages ".Params.category" "!=" nil }}
+
+  {{ if $categorized }}
+    {{/* Grouped layout: collect unique category values in weight order */}}
+    {{ $categories := slice }}
+    {{ range .Pages.ByWeight }}
+      {{ with .Params.category }}
+        {{ if not (in $categories .) }}
+          {{ $categories = $categories | append . }}
+        {{ end }}
       {{ end }}
-    </a>
     {{ end }}
-  </div>
+
+    {{ range $categories }}
+    {{ $cat := . }}
+    {{ $pages := where $.Pages ".Params.category" $cat }}
+    <section class="docs-list-section">
+      <h2 class="docs-list-section-title">{{ $cat | title }}</h2>
+      <div class="features-grid docs-list-grid">
+        {{ range $pages.ByWeight }}
+        <a href="{{ .RelPermalink }}" class="feature-card">
+          {{ with .Params.icon }}<div class="feature-icon" aria-hidden="true">{{ . }}</div>{{ end }}
+          <h3 class="feature-title">{{ .Title }}</h3>
+          {{ if .Description }}
+          <p class="feature-description">{{ .Description }}</p>
+          {{ else if .Summary }}
+          <p class="feature-description">{{ .Summary | plainify | truncate 120 }}</p>
+          {{ end }}
+        </a>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+
+    {{/* Uncategorized pages fall through at the bottom */}}
+    {{ $uncategorized := where .Pages ".Params.category" nil }}
+    {{ if $uncategorized }}
+    <section class="docs-list-section">
+      <div class="features-grid docs-list-grid">
+        {{ range $uncategorized.ByWeight }}
+        <a href="{{ .RelPermalink }}" class="feature-card">
+          <h3 class="feature-title">{{ .Title }}</h3>
+          {{ if .Description }}
+          <p class="feature-description">{{ .Description }}</p>
+          {{ else if .Summary }}
+          <p class="feature-description">{{ .Summary | plainify | truncate 120 }}</p>
+          {{ end }}
+        </a>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+
+  {{ else }}
+    {{/* Flat layout: no categories */}}
+    <div class="features-grid docs-list-grid">
+      {{ range .Pages.ByWeight }}
+      <a href="{{ .RelPermalink }}" class="feature-card">
+        {{ with .Params.icon }}<div class="feature-icon" aria-hidden="true">{{ . }}</div>{{ end }}
+        <h3 class="feature-title">{{ .Title }}</h3>
+        {{ if .Description }}
+        <p class="feature-description">{{ .Description }}</p>
+        {{ else if .Summary }}
+        <p class="feature-description">{{ .Summary | plainify | truncate 120 }}</p>
+        {{ end }}
+      </a>
+      {{ end }}
+    </div>
+  {{ end }}
   {{ end }}
 </article>
 {{ end }}

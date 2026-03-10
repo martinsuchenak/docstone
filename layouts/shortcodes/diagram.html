@@ -1,0 +1,13 @@
+{{/*
+  Diagram Shortcode
+  Renders a Mermaid diagram with an accessible wrapper.
+  Usage: {{< diagram title="Optional title" >}}
+  graph TD
+    A --> B
+  {{< /diagram >}}
+  Requires Mermaid JS to be loaded by the site (not bundled in theme).
+*/}}
+<figure class="diagram" role="img" {{ with .Get "title" }}aria-label="{{ . }}"{{ else }}aria-label="Diagram"{{ end }}>
+  {{ with .Get "title" }}<figcaption class="diagram-title">{{ . }}</figcaption>{{ end }}
+  <pre class="mermaid">{{ .Inner | trim "\n" }}</pre>
+</figure>

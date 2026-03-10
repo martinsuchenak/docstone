@@ -1,0 +1,19 @@
+{{/*
+  API Endpoint Shortcode
+  Usage: {{< apiendpoint method="GET" path="/api/v1/resource" description="Optional description" >}}
+  Optional inner content (markdown) is rendered below the header.
+  Supported methods: GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
+*/}}
+{{ $method := .Get "method" | upper }}
+<div class="api-endpoint" role="region" aria-label="API Endpoint: {{ $method }} {{ .Get "path" }}">
+  <div class="api-endpoint-header">
+    <span class="api-method api-method-{{ $method | lower }}">{{ $method }}</span>
+    <code class="api-path">{{ .Get "path" }}</code>
+  </div>
+  {{ with .Get "description" }}
+  <p class="api-description">{{ . }}</p>
+  {{ end }}
+  {{ with .Inner }}
+  <div class="api-body">{{ . | markdownify }}</div>
+  {{ end }}
+</div>
