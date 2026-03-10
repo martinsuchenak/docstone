@@ -1,15 +1,16 @@
 {{/*
   Tab Container Shortcode
   Usage:
-  {{< tabs >}}
+  {{< tabcontainer >}}
   {{< tab name="Bash" >}}code here{{< /tab >}}
   {{< tab name="Python" >}}code here{{< /tab >}}
-  {{< /tabs >}}
+  {{< /tabcontainer >}}
   Creates accessible tabbed content
 */}}
-<div class="tab-container" role="tablist" aria-label="Code examples">
-  <div class="tab-buttons">
-    {{ $inner := .Inner }}
+{{/* Render inner content first so tab shortcodes populate .Scratch "tabs" */}}
+{{ $inner := .Inner }}
+<div class="tab-container">
+  <div class="tab-buttons" role="tablist" aria-label="Code examples">
     {{ range $index, $tab := .Scratch.Get "tabs" }}
     <button
       class="tab-button{{ if eq $index 0 }} active{{ end }}"
@@ -24,7 +25,7 @@
     {{ end }}
   </div>
   <div class="tab-contents">
-    {{ .Inner | safeHTML }}
+    {{ $inner | safeHTML }}
   </div>
 </div>
 {{- /* Strip trailing newline */ -}}

@@ -1,16 +1,17 @@
 {{/*
-  Tab Shortcode (used inside tabs)
+  Tab Shortcode (used inside tabcontainer)
   Usage: {{< tab name="Bash" >}}code here{{< /tab >}}
 */}}
 {{ $name := .Get "name" }}
-{{ $index := .Scratch.Add "tabIndex" 1 }}
-{{ $currentIndex := .Scratch.Get "tabIndex" }}
+{{ $tabs := .Parent.Scratch.Get "tabs" }}
+{{ $index := len (default slice $tabs) }}
+{{ .Parent.Scratch.Add "tabs" (slice (dict "name" $name "index" $index)) }}
 <div
-  class="tab-content{{ if eq $currentIndex 1 }} active{{ end }}"
+  class="tab-content{{ if eq $index 0 }} active{{ end }}"
   role="tabpanel"
-  id="tabpanel-{{ $name | urlize }}-{{ $currentIndex }}"
-  aria-labelledby="tab-{{ $name | urlize }}-{{ $currentIndex }}"
-  {{ if gt $currentIndex 1 }}hidden{{ end }}
+  id="tabpanel-{{ $name | urlize }}-{{ $index }}"
+  aria-labelledby="tab-{{ $name | urlize }}-{{ $index }}"
+  {{ if gt $index 0 }}hidden{{ end }}
 >
   {{ .Inner | markdownify }}
 </div>

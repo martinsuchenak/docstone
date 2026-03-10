@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCodeCopy();
   initScrollablePre();
   initThemeSwitcher();
+  initMobileToc();
 });
 
 /**
@@ -183,8 +184,22 @@ function initScrollablePre() {
 }
 
 /**
- * Theme Switcher UI
+ * Mobile TOC Toggle
  */
+function initMobileToc() {
+  const toggle = document.querySelector('.docs-toc-toggle');
+  const content = document.getElementById('docs-toc-mobile-content');
+
+  if (!toggle || !content) return;
+
+  toggle.addEventListener('click', () => {
+    const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isExpanded));
+    content.hidden = isExpanded;
+  });
+}
+
+
 function initThemeSwitcher() {
   const toggle = document.querySelector('.theme-switcher-toggle');
   const menu = document.querySelector('.theme-switcher-menu');

@@ -1,0 +1,17 @@
+# Hugo build output
+public/
+resources/_gen/
+
+# Hugo module cache
+.hugo_build.lock
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+.idea/
+
+# Node (if using npm for asset pipeline)
+node_modules/
